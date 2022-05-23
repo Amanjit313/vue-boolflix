@@ -1,16 +1,16 @@
 <template>
   <div id="app">
-    <myHeader />
+    <myBody />
   </div>
 </template>
 
 <script>
-import myHeader from './components/myHeader.vue'
+import myBody from './components/myBody.vue'
 
 export default {
   name: 'App',
   components: {
-    myHeader
+    myBody
   }
 }
 </script>
