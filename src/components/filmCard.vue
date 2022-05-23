@@ -3,7 +3,7 @@
   <div>
     <h1>Titolo Film: {{film.title}}</h1>
     <p>Titolo Originale: {{film.original_title}}</p>
-    <p>Lingua: {{film.original_language}}</p>
+    <p><lang-flag :iso="film.original_language" :squared="false"/></p>
     <p>Voto: {{film.vote_average}}</p>
     <hr>
   </div>
@@ -11,8 +11,13 @@
 </template>
 
 <script>
+import LangFlag from 'vue-lang-code-flags';
+
 export default {
   name: "myMain",
+  components: {
+    LangFlag
+  },
   props: {
     film : Object
   }
