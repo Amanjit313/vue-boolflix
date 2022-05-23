@@ -19,10 +19,6 @@ export default {
 @import "./assets/style/global";
 @import "./assets/style/utils";
 
-div{
-  background-color: #212121;
-}
-
 </style>
 
 /* PROMEMORIA DEGLI ERRORI */

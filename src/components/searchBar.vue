@@ -39,7 +39,6 @@ export default {
 
 .search-bar-container{
   display: flex;
-  background-color: #212121;
   padding: 20px;
   justify-content: space-between;
   border-bottom: 1px solid #E0E0E0;
