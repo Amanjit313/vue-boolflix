@@ -2,6 +2,11 @@
   <div class="search-bar">
       <input v-model.trim = "movieToSearch" placeholder="Cerca un film" type="text" @keyup.enter="$emit('startSearch', movieToSearch)">
       <button type="button" @click ="$emit('startSearch', movieToSearch)">SEARCH</button>
+
+      <select v-model ="selector" @change ="$emit('selectorType', selector)">
+        <option value="film">Film</option>
+        <option value="serie tv">Serie TV</option>
+      </select>
   </div>
 </template>
 
@@ -11,7 +16,8 @@ export default {
 
   data(){
     return{
-      movieToSearch: ""
+      movieToSearch: "",
+      selector: "film"
     }
   }
 }
@@ -33,6 +39,10 @@ input{
 button{
   padding: 5px;
   border-radius: 5px;
+}
+
+select{
+  margin-left: 10px;
 }
 
 </style>

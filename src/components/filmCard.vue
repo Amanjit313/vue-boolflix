@@ -1,8 +1,8 @@
 <template>
   
   <div>
-    <h1>Titolo Film: {{film.title}}</h1>
-    <p>Titolo Originale: {{film.original_title}}</p>
+    <h1>Titolo Film: {{film.title || film.name}}</h1>
+    <p>Titolo Originale: {{film.original_title || film.original_name}}</p>
     <p><lang-flag :iso="film.original_language" :squared="false"/></p>
     <p>Voto: {{film.vote_average}}</p>
     <hr>

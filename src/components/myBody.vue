@@ -2,7 +2,7 @@
 
   <div class="filmSearcher">
 
-        <searchBar @startSearch="textToSearch"/>
+        <searchBar @startSearch="textToSearch" @selectorType="getAPI"/>
 
         <filmCard 
         v-for = "film in filmSearched" 
@@ -28,7 +28,8 @@ export default {
 
   data(){
     return{
-      apiURL: "https://api.themoviedb.org/3/search/movie",
+      apiURLMovie: "https://api.themoviedb.org/3/search/movie",
+      apiURLTv: "https://api.themoviedb.org/3/search/tv",
       apiParams: {
         api_key: "33253eee85c97808d758bc69d5359747",
         language: "it-IT",
@@ -39,21 +40,33 @@ export default {
   },
 
   methods:{
-    getAPI(){
-      axios.get(this.apiURL, {
-        params: this.apiParams
-      })
-      .then(res =>{
-        console.log(res.data.results)
-        this.filmSearched = res.data.results
-        console.log(this.filmSearched)
-      })
+    getAPI(whatToSee){
+      console.log(whatToSee)
+      if(whatToSee === "serie tv"){
+        axios.get(this.apiURLTv, {
+          params: this.apiParams
+        })
+        .then(res =>{
+          console.log(res.data.results)
+          this.filmSearched = res.data.results
+          console.log(this.filmSearched)
+        })
+      } else{
+          axios.get(this.apiURLMovie, {
+          params: this.apiParams
+        })
+        .then(res =>{
+          console.log(res.data.results)
+          this.filmSearched = res.data.results
+          console.log(this.filmSearched)
+        })
+      }
     },
 
     textToSearch(searcher){
       this.apiParams.query = searcher
       this.getAPI()
-    }
+    },
   }
 }
 </script>
