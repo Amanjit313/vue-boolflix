@@ -20,10 +20,3 @@ export default {
 @import "./assets/style/utils";
 
 </style>
-
-
-
-
-
-/* PROMEMORIA DEGLI ERRORI */
-- Sistemare le bandiere non presenti nella cdn

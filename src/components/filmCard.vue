@@ -10,7 +10,10 @@
 
       <div class="p-overlay">
         <p class="cards-date">{{film.original_title || film.original_name}} | {{film.release_date}}</p>
-        <p class="cards-flag"><lang-flag :iso="film.original_language" :squared="false"/></p>
+
+        <p class="cards-without-flag" v-if="noFlag.includes(film.original_language)">Lingua: {{film.original_language}}</p>
+        <p class="cards-flag" v-else><lang-flag :iso="film.original_language" :squared="false"/></p>
+
         <p class="cards-desc">{{film.overview}}</p>
       </div>
 
@@ -31,6 +34,13 @@ export default {
     LangFlag,
     StarRating
   },
+
+  data(){
+    return{
+      noFlag : ["ml", "pa"]
+    }
+  },
+
   props: {
     film : Object
   }
@@ -66,6 +76,12 @@ export default {
   margin-top: 1.5%;
   text-transform: uppercase;
   font-size: .95rem;
+}
+
+.cards-without-flag{
+  margin-top: 1%;
+  text-transform: uppercase;
+  font-size: .7rem;
 }
 
 .cards-flag{
