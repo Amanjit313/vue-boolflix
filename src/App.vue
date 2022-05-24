@@ -21,6 +21,9 @@ export default {
 
 </style>
 
+
+
+
+
 /* PROMEMORIA DEGLI ERRORI */
-- Sistemare le bandiere non presenti nella cdn,
-- Sistemare gli elementi che non hanno una immagine di default dandone una dinamicamente
+- Sistemare le bandiere non presenti nella cdn

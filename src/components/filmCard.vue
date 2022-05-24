@@ -2,7 +2,8 @@
   
   <div class="cards-container w-80">
 
-    <img :src="`https://image.tmdb.org/t/p/w200/${film.poster_path}`" alt="">
+    <img class="empty-img" v-if="(film.poster_path === null)" :src="`	https://www.cobatyitalia.it/wp-content/uploads/2020/12/img-not-found.jpg`" alt="empty">
+    <img v-else :src="`https://image.tmdb.org/t/p/w200/${film.poster_path}`" alt="poster">
 
     <div class="cards-text">
       <h1 class="cards-title">{{film.title || film.name}}</h1>
@@ -44,6 +45,10 @@ export default {
   border: 1px solid #E0E0E0;
   margin-top: 50px;
   position: relative;
+}
+
+.empty-img{
+  width: 200px;
 }
 
 .cards-text{
