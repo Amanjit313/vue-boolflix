@@ -2,7 +2,8 @@
 
   <div class="filmSearcher">
 
-        <searchBar @startSearch="textToSearch" @selectorType="getAPI"/>
+        <searchBar @startSearch="textToSearch"/>
+        <!-- <h1 v-if="textToSearch === 0">NESSUN RISULTATO</h1> -->
 
         <filmCard 
         v-for = "film in filmSearched" 
@@ -41,31 +42,32 @@ export default {
 
   methods:{
     getAPI(whatToSee){
-      console.log(whatToSee)
+      console.log(whatToSee);
       if(whatToSee === "serie tv"){
         axios.get(this.apiURLTv, {
           params: this.apiParams
         })
         .then(res =>{
-          console.log(res.data.results)
-          this.filmSearched = res.data.results
-          console.log(this.filmSearched)
+          console.log(res.data.results);
+          this.filmSearched = res.data.results;
+          console.log(this.filmSearched);
         })
       } else{
           axios.get(this.apiURLMovie, {
           params: this.apiParams
         })
         .then(res =>{
-          console.log(res.data.results)
-          this.filmSearched = res.data.results
-          console.log(this.filmSearched)
+          console.log(res.data.results);
+          this.filmSearched = res.data.results;
+          console.log(this.filmSearched);
         })
       }
     },
 
-    textToSearch(searcher){
-      this.apiParams.query = searcher
-      this.getAPI()
+    textToSearch(searcher, type){
+      this.apiParams.query = searcher;
+      this.filmSearched = [];
+      this.getAPI(type);
     },
   }
 }

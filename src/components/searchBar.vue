@@ -8,11 +8,11 @@
 
     <div class="search-bar">
       <div class="costum-border">
-        <input v-model.trim = "movieToSearch" placeholder="Cerca un film" type="text" @keyup.enter="$emit('startSearch', movieToSearch)">
-        <button type="button" @click ="$emit('startSearch', movieToSearch)">SEARCH</button>
+        <input v-model.trim = "movieToSearch" placeholder="Cerca un film" type="text" @keyup.enter="$emit('startSearch', movieToSearch, selector)">
+        <button type="button" @click ="$emit('startSearch', movieToSearch, selector)">SEARCH</button>
       </div>
 
-        <select v-model ="selector" @change ="$emit('selectorType', selector)">
+        <select v-model ="selector" @change ="$emit('startSearch', movieToSearch, selector)">
           <option value="film">Film</option>
           <option value="serie tv">Serie TV</option>
         </select>
