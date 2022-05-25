@@ -3,7 +3,11 @@
   <div class="filmSearcher">
 
         <searchBar @startSearch="textToSearch"/>
-        <!-- <h1 v-if="textToSearch === 0">NESSUN RISULTATO</h1> -->
+
+        <div class="no-result-and-loading-from-search" v-if="this.filmSearched.length === 0">
+          <h1>{{testoLoadingUno}}</h1>
+          <p>{{testoLoadingDue}}</p>
+        </div>
 
         <filmCard 
         v-for = "film in filmSearched" 
@@ -36,7 +40,9 @@ export default {
         language: "it-IT",
         query: ""
       },
-      filmSearched: []
+      filmSearched: [],
+      testoLoadingUno: "Cerca un Film o una serie TV!",
+      testoLoadingDue: "In alto a destra trovi la search dove cercare!"
     }
   },
 
@@ -50,15 +56,23 @@ export default {
         .then(res =>{
           console.log(res.data.results);
           this.filmSearched = res.data.results;
+          if (this.filmSearched.length === 0){
+            this.testoLoadingUno = "Nessun risultato";
+            this.testoLoadingDue = "Riprova a cercare!";
+          }
           console.log(this.filmSearched);
         })
       } else{
-          axios.get(this.apiURLMovie, {
+        axios.get(this.apiURLMovie, {
           params: this.apiParams
         })
         .then(res =>{
           console.log(res.data.results);
           this.filmSearched = res.data.results;
+          if (this.filmSearched.length === 0){
+            this.testoLoadingUno = "Nessun risultato";
+            this.testoLoadingDue = "Riprova a cercare!";
+          }
           console.log(this.filmSearched);
         })
       }
@@ -66,6 +80,8 @@ export default {
 
     textToSearch(searcher, type){
       this.apiParams.query = searcher;
+      this.testoLoadingUno = "Sta caricando";
+      this.testoLoadingDue= "Attendere qualche secondo!";
       this.filmSearched = [];
       this.getAPI(type);
     },
@@ -78,6 +94,32 @@ export default {
 .filmSearcher{
   display: flex;
   flex-direction: column;
+}
+
+.no-result-and-loading-from-search{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba($color: black, $alpha: .5);
+  padding: 50px;
+  margin-top: 25vh;
+  text-transform: uppercase;
+}
+
+h1{
+  color: red;
+  background-color: transparent;
+  border-bottom: 1px solid #E0E0E0;
+  padding: 10px;
+  width: 30%;
+  text-align: center;
+}
+
+p{
+  background-color: transparent;
+  color: darkgray;
+  margin-top: 10px;
 }
 
 </style>

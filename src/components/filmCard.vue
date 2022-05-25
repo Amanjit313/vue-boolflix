@@ -9,7 +9,7 @@
       <h1 class="cards-title">{{film.title || film.name}}</h1>
 
       <div class="p-overlay">
-        <p class="cards-date">{{film.original_title || film.original_name}} | {{film.release_date}}</p>
+        <p class="cards-date">{{film.original_title || film.original_name}} | {{film.release_date || film.first_air_date}}</p>
 
         <p class="cards-without-flag" v-if="noFlag.includes(film.original_language)">Lingua: {{film.original_language}}</p>
         <p class="cards-flag" v-else><lang-flag :iso="film.original_language" :squared="false"/></p>
